@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "mock.api.url",
+  "type": "java.lang.String",
+  "description": "Mock Employee API URL"
+}]}
