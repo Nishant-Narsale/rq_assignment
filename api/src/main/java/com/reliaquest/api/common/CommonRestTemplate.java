@@ -2,8 +2,6 @@ package com.reliaquest.api.common;
 
 import org.springframework.web.client.RestTemplate;
 
-
-
 /**
  * Reason to use Common RestTemplate object
  * CommonRestTemplate provides a singleton instance of RestTemplate for making API calls.
