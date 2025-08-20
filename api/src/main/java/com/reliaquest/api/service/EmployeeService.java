@@ -161,7 +161,16 @@ public class EmployeeService {
             return deletedName;
         } catch (ApiClientException e) {
             logger.error("[ERROR] deleteEmployeeById - ApiClientException", e);
-            throw new ResponseStatusException(HttpStatus.valueOf(e.getStatusCode()), e.getMessage(), e);
+            if (e.getStatusCode() == 404) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+            } else if (e.getStatusCode() == 429) {
+                throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, e.getMessage(), e);
+            } else {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+            }
+        } catch (ResponseStatusException e) {
+            logger.error("[ERROR] deleteEmployeeById - ResponseStatusException", e);
+            throw e;
         } catch (Exception e) {
             logger.error("[ERROR] deleteEmployeeById - Exception", e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting employee", e);
