@@ -5,7 +5,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8111"
+				"url": "http://localhost:8111/employee"
 			},
 			"response": []
 		},
@@ -14,7 +14,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8111/search/Antonio"
+				"url": "http://localhost:8111/employee/search/Stevie"
 			},
 			"response": []
 		},
@@ -23,7 +23,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8111/9c8ac041-a12f-456f-9c89-0835de529603"
+				"url": "http://localhost:8111/employee/2755c1b7-1ab9-4902-a840-9a7232893161"
 			},
 			"response": []
 		},
@@ -32,7 +32,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8111/highestSalary"
+				"url": "http://localhost:8111/employee/highestSalary"
 			},
 			"response": []
 		},
@@ -41,7 +41,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8111/topTenHighestEarningEmployeeNames"
+				"url": "http://localhost:8111/employee/topTenHighestEarningEmployeeNames"
 			},
 			"response": []
 		},
@@ -59,15 +59,20 @@
 						}
 					}
 				},
-				"url": "http://localhost:8111"
+				"url": "http://localhost:8111/employee"
 			},
 			"response": []
 		},
 		{
 			"name": "deleteEmployeeById",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8111/employee/2755c1b7-1ab9-4902-a840-9a7232893161"
 			},
 			"response": []
 		}
