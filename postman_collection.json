@@ -1,0 +1,75 @@
+{
+	"item": [
+		{
+			"name": "getAllEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8111"
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeesByNameSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8111/search/Antonio"
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeeById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8111/9c8ac041-a12f-456f-9c89-0835de529603"
+			},
+			"response": []
+		},
+		{
+			"name": "getHighestSalaryOfEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8111/highestSalary"
+			},
+			"response": []
+		},
+		{
+			"name": "getTopTenHighestEarningEmployeeNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8111/topTenHighestEarningEmployeeNames"
+			},
+			"response": []
+		},
+		{
+			"name": "createEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Gertha Miller\",\r\n    \"salary\": 447185,\r\n    \"age\": 54,\r\n    \"title\": \"Consulting Architect\",\r\n    \"email\": \"tampflex@company.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8111"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEmployeeById",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

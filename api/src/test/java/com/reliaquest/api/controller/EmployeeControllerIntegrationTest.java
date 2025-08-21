@@ -21,8 +21,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class EmployeeControllerIntegrationTest {
@@ -49,7 +51,7 @@ class EmployeeControllerIntegrationTest {
                 .build();
         given(employeeApiClient.getAllEmployees()).willReturn(List.of(emp));
 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/employee"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].id", notNullValue()))
@@ -61,16 +63,16 @@ class EmployeeControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("GET / when downstream fails -> 500 Internal Server Error")
+    @DisplayName("GET /employee when downstream fails -> 500 Internal Server Error")
     void getAllEmployees_whenClientFails_returns500() throws Exception {
         given(employeeApiClient.getAllEmployees())
                 .willThrow(new ApiClientException("downstream error", new RuntimeException("boom"), 500));
 
-        mockMvc.perform(get("/")).andExpect(status().isInternalServerError());
+        mockMvc.perform(get("/employee")).andExpect(status().isInternalServerError());
     }
 
     @Test
-    @DisplayName("POST / -> 200 Ok")
+    @DisplayName("POST /employee -> 200 Ok")
     void createEmployee_returns200AndBody() throws Exception {
         CreateEmployeeDTO dto = CreateEmployeeDTO.builder()
                 .name("Bob")
@@ -92,7 +94,7 @@ class EmployeeControllerIntegrationTest {
 
         String payload = objectMapper.writeValueAsString(dto);
 
-        mockMvc.perform(post("/")
+        mockMvc.perform(post("/employee")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
                 .andExpect(status().isOk())
@@ -106,7 +108,7 @@ class EmployeeControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("POST / when downstream fails -> 500 INTERNAL SERVER ERROR")
+    @DisplayName("POST /employee when downstream fails -> 500 INTERNAL SERVER ERROR")
     void createEmployee_whenClientFails_returns500() throws Exception {
         given(employeeApiClient.createEmployee(any()))
                 .willThrow(new ApiClientException("downstream error", new RuntimeException("boom"), 500));
@@ -120,10 +122,9 @@ class EmployeeControllerIntegrationTest {
 
         String payload = objectMapper.writeValueAsString(dto);
 
-        mockMvc.perform(post("/")
+        mockMvc.perform(post("/employee")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
                 .andExpect(status().isInternalServerError());
     }
-
 }
