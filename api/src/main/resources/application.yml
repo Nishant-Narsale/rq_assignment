@@ -5,8 +5,14 @@ server:
   compression:
     enabled: true
 
-mock.api.url: http://localhost:8112/api/v1/employee
-
 logging:
   level:
     com.reliaquest.api: INFO
+
+# Mock API URL
+mock.api.url: http://localhost:8112/api/v1/employee
+
+# Retry for Rate-limiting responses from mock api
+# keeping false by default, because mock api retry delay usually starts with 80 seconds
+# don't want to user to wait for 80 seconds by default
+rest.template.use.retry.for.429: true
